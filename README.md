@@ -10,6 +10,7 @@ This is simple todo application which built for the purpose of tracking, utilizi
 
 ## Features
 
-- User can add a task, automatically timestamped with today's date.
+- User can add a task, set priorty, and automatically timestamped with today's date.
 - The task can be updated if it's completed or deleted when it's done.
 - Totall available tasks and complted task data is presented as well.
+- User can filter data by priority
