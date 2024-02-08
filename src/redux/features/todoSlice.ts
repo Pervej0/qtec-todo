@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../store";
+import toast from "react-hot-toast";
 
 type TTask = {
   id: string;
@@ -31,8 +32,7 @@ export const todoSlice = createSlice({
         (item) => item.id !== action.payload
       );
       state.todos = remainedTasks;
-      // const stringiedTodos = JSON.stringify(remainedTasks);
-      // localStorage.setItem("todos", stringiedTodos);
+      toast.success("Task deleted!");
     },
     updateTask: (state, action) => {
       const updateTask = state.todos.find(
@@ -44,6 +44,7 @@ export const todoSlice = createSlice({
       state.todos.sort(
         (item1, item2) => Number(item1.isCompleted) - Number(item2.isCompleted)
       );
+      toast.success("Updated successfully!");
       // const stringiedTodos = JSON.stringify(updateTask);
       // localStorage.setItem("todos", stringiedTodos);
     },

@@ -18,7 +18,7 @@ const TaskLayout = () => {
             <h4>{item.date}</h4>
           </div>
           <div className="px-6 py-2">
-            <h1 className="text-2xl">{item?.task}</h1>
+            <h1 className="text-xl font-semibold">{item?.task}</h1>
             <h5 className="font-semibold">
               Status:
               {item.isCompleted ? (

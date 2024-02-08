@@ -1,6 +1,7 @@
 import { FormEvent, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { addTask } from "../redux/features/todoSlice";
+import toast from "react-hot-toast";
 
 const TaskForm = () => {
   const [task, setTask] = useState("");
@@ -23,6 +24,7 @@ const TaskForm = () => {
     };
     dispatch(addTask(data));
     setTask("");
+    toast.success("Task Added");
   };
 
   return (
