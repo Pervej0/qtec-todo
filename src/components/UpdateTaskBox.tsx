@@ -2,17 +2,19 @@
 import { FormEvent, useState } from "react";
 import { useAppDispatch } from "../redux/hooks";
 import { updateTask } from "../redux/features/todoSlice";
+import { TTask } from "../type/index.type";
 
-const UpdateTaskBox = ({ task }: { task: any }) => {
+const UpdateTaskBox = ({ task }: { task: TTask }) => {
   const [checked, setChecked] = useState(false);
+  const [priority, setPriority] = useState(task.priority);
   const [updatedTask, setUpdatedTask] = useState("");
   const dispatch = useAppDispatch();
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     const data = { ...task };
     data.task = updatedTask || data.task;
-    data.isCompleted = checked;
-    console.log(data, "xxxx");
+    data.isCompleted = checked || data.isCompleted;
+    data.priority = priority || data.priority;
     dispatch(updateTask(data));
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
@@ -45,6 +47,18 @@ const UpdateTaskBox = ({ task }: { task: any }) => {
               onChange={(e) => setUpdatedTask(e.target.value)}
               className="input input-bordered w-full max-w-full"
             />
+            <select
+              value={priority}
+              onChange={(e) => setPriority(e.target.value)}
+              className="select select-bordered w-full mt-3 font-semibold"
+            >
+              <option className="font-semibold" disabled selected>
+                Task Priority
+              </option>
+              <option>High</option>
+              <option>Low</option>
+              <option>Medium</option>
+            </select>
             <label className="cursor-pointer label my-3">
               <span className="label-text text-md font-semibold">
                 Task Completed

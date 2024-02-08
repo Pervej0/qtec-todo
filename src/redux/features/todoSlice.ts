@@ -30,6 +30,7 @@ export const todoSlice = createSlice({
       );
 
       updateTask!.task = action?.payload?.task;
+      updateTask!.priority = action.payload.priority;
       updateTask!.isCompleted = action.payload?.isCompleted;
       state.todos.sort(
         (item1, item2) => Number(item1.isCompleted) - Number(item2.isCompleted)
