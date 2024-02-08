@@ -27,7 +27,7 @@ const TaskForm = () => {
   };
 
   return (
-    <div className="w-full flex sm:flex-col md:flex-row gap-5 justify-between text-center px-2 sm:px-16">
+    <div className="w-full flex flex-col sm:flex-row gap-5 justify-between text-center px-2 sm:px-16 py-10 sm:py-0">
       <form
         onSubmit={handleSubmit}
         className="flex justify-center items-center md:w-2/3 w-full"
@@ -45,8 +45,8 @@ const TaskForm = () => {
           Add Task
         </button>
       </form>
-      <div className="w-1/3 text-white h-full border-l py-10">
-        <div className="text-right pr-6 pt-4 mx-4">
+      <div className="w-full md:w-1/3 text-white h-full bottom-0 sm:border-l sm:py-10 pt-0">
+        <div className="text-right md:pr-6 pr-0 pt-4 mx-4">
           <h6 className="bg-gray-400 px-3 text-black border-b text-lg py-1">
             Total Tasks: {totalTodo}
           </h6>
