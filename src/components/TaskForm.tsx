@@ -79,7 +79,7 @@ const TaskForm = ({
             value={filter}
             onChange={(e) => setFilter(e.target.value)}
             required
-            className="select select-bordered mt-10 font-semibold"
+            className="select select-bordered mt-10 font-semibold mb-5 md:mb-0"
           >
             <option className="font-semibold" disabled selected>
               {filter}
