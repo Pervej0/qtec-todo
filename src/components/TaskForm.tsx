@@ -1,13 +1,15 @@
-import { FormEvent, useContext, useState } from "react";
-import { todosData, useAppDispatch, useAppSelector } from "../redux/hooks";
+import { FormEvent, useState } from "react";
+import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { addTask } from "../redux/features/todoSlice";
 
 const TaskForm = () => {
   const [task, setTask] = useState("");
   const dispatch = useAppDispatch();
+  const todos = useAppSelector((state) => state.todo.todos);
 
-  const totalTodo = todosData?.length;
-  const completedTodo = todosData?.filter((item) => item.isCompleted).length;
+  // const data = !todos?.length ? todosData : todos;
+  const totalTodo = todos?.length || 0;
+  const completedTodo = todos?.filter((item) => item?.isCompleted)?.length || 0;
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
