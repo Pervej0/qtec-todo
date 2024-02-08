@@ -1,5 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import todoReducer from "./features/todoSlice";
+import { useAppSelector } from "./hooks";
 
 export const store = configureStore({
   reducer: {

@@ -17,6 +17,17 @@ export const todoSlice = createSlice({
   reducers: {
     addTask: (state, action) => {
       state.todos.push(action.payload);
+      // retrieve if any todo stored
+      const storedTodos = localStorage.getItem("todos");
+      // parse in object
+      let parsedTodos = storedTodos
+        ? JSON.parse(storedTodos)
+        : [...state.todos];
+      parsedTodos = state.todos;
+      // convert again in string to store in localstorage
+      const stringiedTodos = JSON.stringify(parsedTodos);
+      // set in localstorage
+      localStorage.setItem("todos", stringiedTodos);
     },
     removeTask: (state, action) => {
       const remainedTasks = state.todos.filter(
@@ -25,19 +36,9 @@ export const todoSlice = createSlice({
       state.todos = remainedTasks;
     },
     updateTask: (state, action) => {
-      // state.todos.map((item) => {
-      //   if (item.id === action.payload.id) {
-      //     item.task = action.payload?.task;
-      //     item.isCompleted = action.payload.isCompleted;
-      //     return item;
-      //   }
-      //   return item;
-      // });
-
       const updateTask = state.todos.find(
         (item) => item.id === action.payload.id
       );
-      // console.log(updateTask, "yy");
       updateTask!.task = action.payload?.task;
       updateTask!.isCompleted = action.payload?.isCompleted;
       state.todos.sort(

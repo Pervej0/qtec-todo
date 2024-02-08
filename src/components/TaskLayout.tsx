@@ -1,16 +1,16 @@
 import { useContext, useEffect, useState } from "react";
 import { removeTask } from "../redux/features/todoSlice";
-import { useAppDispatch, useAppSelector } from "../redux/hooks";
+import { todosData, useAppDispatch, useAppSelector } from "../redux/hooks";
 import UpdateTaskBox from "./UpdateTaskBox";
 
 const TaskLayout = () => {
   const [singleTask, setSingleTask] = useState({});
-  const todoData = useAppSelector((state) => state.todo.todos);
+  //   const todoData = useAppSelector((state) => state.todo.todos);
   const dispatch = useAppDispatch();
-
+  console.log(todosData, "rter");
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 px-4 sm:px-20 border-t pt-10">
-      {todoData?.map((item, index) => (
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 px-4 sm:px-20 border-t pt-8">
+      {todosData?.map((item, index) => (
         <div key={index} className="border rounded bg-[#d7d7d7] text-black">
           <div className="border-b border-gray-500 pl-5 font-semibold">
             <h4>{item.date}</h4>
