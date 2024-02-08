@@ -8,7 +8,6 @@ const TaskForm = () => {
   const dispatch = useAppDispatch();
   const todos = useAppSelector((state) => state.todo.todos);
 
-  // const data = !todos?.length ? todosData : todos;
   const totalTodo = todos?.length || 0;
   const completedTodo = todos?.filter((item) => item?.isCompleted)?.length || 0;
 

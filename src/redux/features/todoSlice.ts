@@ -1,21 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../store";
 import toast from "react-hot-toast";
-
-type TTask = {
-  id: string;
-  task: string;
-  date: string;
-  isCompleted?: boolean;
-};
-
-// const getAllTodos = localStorage.getItem("todos");
-// const parsedTodos = !getAllTodos?.length ? JSON.parse(getAllTodos!) : [];
+import { TTask } from "../../type/index.type";
 
 const initialState = {
   todos: [] as TTask[],
 };
-console.log(initialState);
 
 export const todoSlice = createSlice({
   name: "todo",
