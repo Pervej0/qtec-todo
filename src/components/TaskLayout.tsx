@@ -8,7 +8,6 @@ const TaskLayout = ({ filter }: { filter: string }) => {
   const [singleTask, setSingleTask] = useState({});
   const todos = useAppSelector((state) => state.todo.todos);
   const dispatch = useAppDispatch();
-  console.log(filter, "er");
   const filteredData = todos.filter((item) => item.priority === filter);
   const data = filteredData.length ? filteredData : todos;
   return (

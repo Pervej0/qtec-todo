@@ -2,9 +2,8 @@
 import { FormEvent, useState } from "react";
 import { useAppDispatch } from "../redux/hooks";
 import { updateTask } from "../redux/features/todoSlice";
-import { TTask } from "../type/index.type";
 
-const UpdateTaskBox = ({ task }: { task: TTask }) => {
+const UpdateTaskBox = ({ task }: { task: any }) => {
   const [checked, setChecked] = useState(false);
   const [priority, setPriority] = useState(task.priority);
   const [updatedTask, setUpdatedTask] = useState("");
