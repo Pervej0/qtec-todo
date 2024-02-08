@@ -5,7 +5,7 @@ import "./index.css";
 import { Provider } from "react-redux";
 import { store } from "./redux/store.ts";
 import { Toaster } from "react-hot-toast";
-import TodoProvider from "./context/todoProvider.tsx";
+import TodoProvider from "./context/TodoProvider.tsx";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>

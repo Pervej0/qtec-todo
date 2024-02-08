@@ -1,36 +1,36 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { FormEvent, useState } from "react";
 import { useAppDispatch } from "../redux/hooks";
 import { updateTask } from "../redux/features/todoSlice";
 
-const UpdateTaskBox = ({
-  task,
-  id,
-  isComplted,
-}: {
-  task;
-  //   id: string;
-  //   isComplted: unknown;
-}) => {
-  const [checked, setChecked] = useState(isComplted);
+const UpdateTaskBox = ({ task }: { task: any }) => {
+  const [checked, setChecked] = useState(false);
   const [updatedTask, setUpdatedTask] = useState("");
   const dispatch = useAppDispatch();
-  console.log(task);
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    const data = { task: updatedTask || task, id, isCompleted: checked };
-    console.log(data);
-    // dispatch(updateTask(data));
+    const data = { ...task };
+    data.task = updatedTask || data.task;
+    data.isCompleted = checked;
+    console.log(data, "xxxx");
+    dispatch(updateTask(data));
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
-    document.getElementById("update_task").checked = false;
+    document?.getElementById("update_task")?.close();
+  };
+
+  const handleToggle = (id: string) => {
+    if (task.id === id) {
+      !checked ? setChecked(true) : setChecked(false);
+    }
   };
 
   return (
     <>
-      <input type="checkbox" id="update_task" className="modal-toggle" />
-      <div className="modal" role="dialog">
+      <dialog id="update_task" className="modal">
         <div className="modal-box">
           <form method="dialog">
+            {/* if there is a button in form, it will close the modal */}
             <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
               ✕
             </button>
@@ -41,6 +41,7 @@ const UpdateTaskBox = ({
               type="text"
               placeholder="Task.."
               defaultValue={task.task}
+              key={task.task}
               onChange={(e) => setUpdatedTask(e.target.value)}
               className="input input-bordered w-full max-w-full"
             />
@@ -51,9 +52,8 @@ const UpdateTaskBox = ({
               <input
                 type="checkbox"
                 checked={checked as boolean}
-                onChange={() =>
-                  !checked ? setChecked(true) : setChecked(false)
-                }
+                name="completeTask"
+                onChange={() => handleToggle(task.id)}
                 className="checkbox checkbox-success"
               />
             </label>
@@ -68,7 +68,7 @@ const UpdateTaskBox = ({
         <label className="modal-backdrop" htmlFor="update_task">
           Close
         </label>
-      </div>
+      </dialog>
     </>
   );
 };

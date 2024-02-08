@@ -19,9 +19,21 @@ export const todoSlice = createSlice({
       state.todos.push(action.payload);
     },
     removeTask: (state, action) => {
-      state.todos.filter((item) => item.id !== action.payload);
+      const remainedTasks = state.todos.filter(
+        (item) => item.id !== action.payload
+      );
+      state.todos = remainedTasks;
     },
     updateTask: (state, action) => {
+      // state.todos.map((item) => {
+      //   if (item.id === action.payload.id) {
+      //     item.task = action.payload?.task;
+      //     item.isCompleted = action.payload.isCompleted;
+      //     return item;
+      //   }
+      //   return item;
+      // });
+
       const updateTask = state.todos.find(
         (item) => item.id === action.payload.id
       );

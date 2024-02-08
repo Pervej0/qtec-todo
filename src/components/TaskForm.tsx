@@ -1,19 +1,20 @@
 import { FormEvent, useContext, useState } from "react";
-import { useAppDispatch } from "../redux/hooks";
+import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { addTask } from "../redux/features/todoSlice";
-import { TodoContext } from "../context/todoProvider";
 
 const TaskForm = () => {
   const [task, setTask] = useState("");
   const dispatch = useAppDispatch();
-  const { todoReport } = useContext(TodoContext);
+  const { todos } = useAppSelector((state) => state.todo);
 
-  console.log(todoReport, "ererer");
+  const totalTodo = todos.length;
+  const completedTodo = todos.filter((item) => item.isCompleted).length;
+
+  console.log(todos, "erer");
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     const generateId = Math.random().toString(36).substring(2, 10);
     const date = new Date().toLocaleDateString();
-
     const data = {
       id: generateId,
       task,
@@ -48,8 +49,8 @@ const TaskForm = () => {
           Report
         </h4>
         <div className="text-right pr-6 pt-4">
-          <h6>Total Tasks: {todoReport.totalTodo}</h6>
-          <h6>Completed Tasks: {todoReport.completedTodo}</h6>
+          <h6>Total Tasks: {totalTodo}</h6>
+          <h6>Completed Tasks: {completedTodo}</h6>
         </div>
       </div>
     </div>
